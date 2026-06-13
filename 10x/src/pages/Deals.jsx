@@ -5,6 +5,7 @@ import { useEffect } from 'react';
 function Deals() {
   const [deals, setDeals] = React.useState([]);
 const BACKEND_URL = 'http://localhost:8080';
+
   const shuffleArray = (array) => {
     let shuffled = [...array];
     for (let i = shuffled.length - 1; i > 0; i--) {
@@ -13,8 +14,11 @@ const BACKEND_URL = 'http://localhost:8080';
     }
     return shuffled;
 
-  };
-  useEffect(() => {
+  }; 
+
+ 
+  useEffect(() => { 
+    
     const fetchDeals = async () => {
       try {
         const response = await axios.get(`${BACKEND_URL}/products/list`);

@@ -27,3 +27,7 @@ const orderPaymentSchema = new mongoose.Schema({
 }, {
     timestamps: true
 });
+
+const OrderPayment = mongoose.model('OrderPayment', orderPaymentSchema);
+
+module.exports = OrderPayment;

@@ -63,10 +63,10 @@ exports.deleteOrderPayment = async (req, res) => {
 
 exports.getAllOrderPayments = async (req, res) => {
     try {
-        const orderPayments = await orderPaymentModel.find();
+        const orderPayments = await orderPaymentModel.find({});
         res.status(200).json(orderPayments);
     } catch (error) {
-        res.status(500).json({ message: 'Error fetching order payments', error });
+        res.status(500).json({ message: 'Error fetching order payments', error: error.message });
     }
 };
 

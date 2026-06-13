@@ -5,7 +5,6 @@ import { useEffect, useState } from 'react'
 function Products() {
   const [products, setProducts] = useState([]);
 
-  // Base URL pointing directly to your Express backend configuration server
   const BACKEND_URL = 'http://localhost:8080';
 
   useEffect(() => {
@@ -19,11 +18,11 @@ function Products() {
     };
     fetchProducts();
   }, []);
-
+ 
   return (
     <div>
       <Navbar />
-      <ul className="grid grid-cols-1 md:grid-cols-3 gap-6 p-4" onClick={() => console.log( products)}>
+      <ul className="grid grid-cols-1 md:grid-cols-3 gap-6 p-4" > 
         {products.map((product) => (
           <li 
             key={product._id} 
