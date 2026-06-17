@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 const user = require('../model/usermodel');
+const jwt = require('jsonwebtoken');
 
 exports.registerUser = async (req, res) => {
     try {
@@ -12,7 +13,8 @@ exports.registerUser = async (req, res) => {
             password
         });
         await newUser.save();
-        res.status(201).json({ message: 'User registered successfully', user: newUser });
+        const token = jwt.sign({ userId: newUser.userId }, process.env.JWT_SECRET, { expiresIn: '1h' });
+        res.status(201).json({ message: 'User registered successfully', user: newUser, token });
     }
     catch (error) {
         res.status(500).json({ message: 'Error registering user', error: error.message });
@@ -29,7 +31,8 @@ exports.loginUser = async (req, res) => {
         if (existingUser.password !== password) {
             return res.status(401).json({ message: 'Invalid password' });
         }
-        res.status(200).json({ message: 'Login successful', user: existingUser });
+        const token = jwt.sign({ userId: existingUser.userId }, process.env.JWT_SECRET, { expiresIn: '1h' });
+        res.status(200).json({ message: 'Login successful', user: existingUser, token });
     }
     catch (error) {
         res.status(500).json({ message: 'Error logging in', error: error.message });
@@ -62,7 +65,8 @@ exports.updateUserProfile = async (req, res) => {
         if (!updatedUser) {
             return res.status(404).json({ message: 'User not found' });
         }   
-        res.status(200).json({ message: 'User profile updated successfully', user: updatedUser });
+        const token = jwt.sign({ userId: updatedUser.userId }, process.env.JWT_SECRET, { expiresIn: '1h' });
+        res.status(200).json({ message: 'User profile updated successfully', user: updatedUser, token });
     }   
     catch (error) {
         res.status(500).json({ message: 'Error updating user profile', error: error.message });
@@ -76,7 +80,8 @@ exports.deleteUserProfile = async (req, res) => {
         if (!deletedUser) {
             return res.status(404).json({ message: 'User not found' });
         }
-        res.status(200).json({ message: 'User profile deleted successfully' });
+        const token = jwt.sign({ userId: deletedUser.userId }, process.env.JWT_SECRET, { expiresIn: '1h' });
+        res.status(200).json({ message: 'User profile deleted successfully', token });
     }
     catch (error) {
         res.status(500).json({ message: 'Error deleting user profile', error: error.message });

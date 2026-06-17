@@ -6,7 +6,8 @@ const mongoose = require('mongoose');
 const path = require('path');
 
 const app = express();
-const PORT = process.env.PORT; // Fallback to 8080 if process.env.PORT is blank
+const PORT = process.env.PORT || 8080;
+const JWT_SECRET = process.env.JWT_SECRET 
 
 // ==========================================
 // 1. GLOBAL MIDDLEWARE (Order is Crucial)
