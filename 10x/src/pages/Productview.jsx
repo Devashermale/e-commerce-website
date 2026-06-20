@@ -20,8 +20,8 @@ const res = await axios.get(`${BACKEND_URL}/products/list`);
   return (
     <div>
         {data.map((product)=>(
-            <div className=' grid grid-cols-2 '> 
-                <div className=' size-120 m-4 '>
+            <div className=' grid grid-cols-2 ' > 
+                <div className=' size-120 m-4 ' key={product._id}>
                     <img src={`${BACKEND_URL}/${product.image}`} className="w-full h-full object-cover"
                      alt={product.name} />
                 </div>
@@ -29,7 +29,6 @@ const res = await axios.get(`${BACKEND_URL}/products/list`);
                     <h2>{product.name}</h2>
                     <p>{product.description}</p>
                     <li>{product.price}₹</li>
-
                 </div>
             </div>
            

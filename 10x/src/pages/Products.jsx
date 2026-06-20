@@ -43,6 +43,7 @@ function Products() {
               <p className="text-sm text-gray-600">{product.description}</p>
               <p className="text-base font-bold text-gray-900 mt-auto">Price: ${product.price}</p>
             </div>
+            <button onClick={``}>{product.name}info</button>
           </li>
         ))}
       </ul>

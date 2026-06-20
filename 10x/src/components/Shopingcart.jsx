@@ -20,7 +20,7 @@ function ShoppingCart({ onClose }) {
   }, []);
 
   if (error) {
-    return <p className="text-red-500 p-4">Error: {error}</p>; 
+    return <p className="text-red-500 p-4">Error: {error.message}</p>; 
   }
 
   return (
@@ -44,7 +44,8 @@ function ShoppingCart({ onClose }) {
           <ul className="space-y-2">
             {cart.map((product) => (
               <li key={product._id} className="border-b pb-1 last:border-none">
-                {product[2].name} 
+                <h1>{product.productId}</h1>
+                <p>{product}</p>
               </li>
             ))}
           </ul>

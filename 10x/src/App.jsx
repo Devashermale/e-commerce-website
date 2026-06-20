@@ -6,7 +6,6 @@ import Register from './pages/Userregister'
 import Login from './pages/Login'
 import Products from './pages/Products'
 import Deals from './pages/Deals'
-import Orders from './pages/Orders'
 import Productview from './pages/Productview';
 
 function App() {
@@ -21,7 +20,6 @@ function App() {
 <Route path = '/login' element={<Login/>} />
 <Route path='/products' element={<Products/>} />
 <Route path='/deals' element={<Deals/>} />
-<Route path='/orders' element={<Orders/>} />
 <Route path='/view' element={<Productview/>}/>
     </Routes>
     </>
